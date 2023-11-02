@@ -1,0 +1,1 @@
+Welcome to my full stack ecommerce website. This site is created using django to create a RESTful backend API and database management which powers a React frontend.

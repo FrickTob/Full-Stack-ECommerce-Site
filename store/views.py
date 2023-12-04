@@ -10,7 +10,12 @@ def index(request):
 
 @api_view(['GET'])
 def getProducts(request):
+    searchString = request.query_params.get('search')
+    print("Search String: ", searchString)
     products = Product.objects.all()
+    print(products)
+    products = filter(lambda x : searchString in x.product_title, products)
+    print(products)
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 

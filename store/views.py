@@ -4,6 +4,7 @@ from store.models import Product
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import ProductSerializer
+import json
 
 def index(request):
     return HttpResponse("Hello World. You're at the polls index.")
@@ -32,6 +33,13 @@ def removeProduct(request, pk):
         serializer = ProductSerializer(product)
         return Response(serializer.data)
     return Response("Not Enough in Stock")
+
+@api_view(['PUT'])
+def checkoutProducts(request):
+    productsToCheckout = json.loads(request.body)
+    print("look here",productsToCheckout)
+    return Response("Checkout Success")
+    
 
 @api_view(['PUT'])
 def addProduct(request, pk):
